@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ object.name }}
+{% endblock %}
+
+{% block content %}
+
+    <section class="p-5" style="background: #fff; border-radius: 6px; box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.05);">
+      <h1 class="h2 mb-4 font-weight-bold">{{ object.name }}</h1>
+      <div class="row">
+        <div class="col-10 col-md-7">
+          <img src="{{ object.img.url }}" alt="" width="600" class="pb-3 pr-4" style="max-width: 100%;">
+        </div>
+        <div class="col-12 col-md-5">
+          <p class="h2 font-weight-bold pb-2">{{ object.price }} Р</p>
+          <p class="item-descr pb-2">{{ object.description|linebreaks }}</p>
+          <hr>
+          <div class="info-wrap pt-2 pb-3 d-flex align-items-center">
+              {% if object.safe_sale %}
+                <img src="https://raw.githubusercontent.com/kushedow/flask-html/master/Ducks/static/safe.svg" alt="" width="30">
+                <p class="m-0 p-0 pl-3">Безопасная сделка</p>
+              {% endif %}
+          </div>
+          <div class="info-wrap pb-3 d-flex align-items-center">
+              {% if object.delivery %}
+                <img src="https://raw.githubusercontent.com/kushedow/flask-html/master/Ducks/static/delivery-truck.svg" alt="" width="26">
+                <p class="m-0 p-0 pl-3">Возможна доставка</p>
+              {% endif %}
+          </div>
+          <div class="adress-wrap pt-2">
+            <p class="mb-0 pb-0 text-muted">Адрес:</p>
+            <p class="mt-0 pt-0" style="font-size: 20px;">{{ object.address }}</p>
+          </div>
+          <div class="seller-wrap pt-2">
+            <p class="mb-0 pb-0 text-muted">Продавец:</p>
+            <p class="mt-0 pt-0" style="font-size: 20px;">{{ object.seller }}</p>
+          </div>
+          <a href="#" class="btn btn-warning px-4 py-3 mt-4">Позвонить продавцу</a>
+          <a href="{% url 'update_item_url' pk=object.id %}" class="btn btn-warning px-4 py-3 mt-4">Обновить товар</a>
+        </div>
+      </div>
+    </section>
+
+{% endblock %}
