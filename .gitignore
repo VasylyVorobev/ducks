@@ -4,3 +4,4 @@ venv
 static
 media
 mainapp/migrations
+__pycache__
